@@ -18,7 +18,7 @@ const UseCallBackPage = () => {
 
   return (
     <div>
-      <h2>Increment and Decrement in useCallback Test</h2>
+      <h2>Increment and Decrement using useCallback Test</h2>
       <h1>Count: {count}</h1>
       <button onClick={handleIncrement}>
         {" "}

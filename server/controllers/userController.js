@@ -2,6 +2,8 @@ const Users = require("../models/userModel");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const jwt = require("jsonwebtoken");
 // const { signUpSchema } = require("../helper/validatorSchema");
+const async = require("async");
+
 const ErrorHandler = require("../utils/ErrorHandler");
 const { getAllUsers, getAllDepartment } = require("../helper/common");
 
@@ -130,3 +132,58 @@ exports.get_all_user_and_department = catchAsyncErrors(
       });
   }
 );
+exports.parallelExample = catchAsyncErrors(async (req, res, next) => {
+  async.parallel(
+    [
+      function (callback) {
+        setTimeout(function () {
+          console.log("Task One");
+          let fistName = {
+            firstName: "Neeraj",
+          };
+          callback(null, fistName);
+        }, 200);
+      },
+      function (callback) {
+        setTimeout(function () {
+          let lastName = {
+            lastName: "Maurya",
+          };
+          callback(null, lastName);
+        }, 100);
+      },
+    ],
+    function (err, results) {
+      console.log(results, "results");
+      // the results array will equal [1, 2] even though
+      // the second function had a shorter timeout.
+      return res.json(results);
+    }
+  );
+});
+exports.waterFallExample = catchAsyncErrors(async (req, res, next) => {
+  async.waterfall(
+    [
+      function (callback) {
+        let fistName = {
+          firstName: "Neeraj",
+        };
+        let lastName = {
+          firstName: "Maurya",
+        };
+        callback(null, fistName, lastName);
+      },
+      function (arg1, arg2, callback) {
+        let arg3 = { arg1, arg2 };
+        callback(null, arg3);
+      },
+      function (arg1, callback) {
+        callback(null, arg1);
+      },
+    ],
+    function (err, result) {
+      console.log(result);
+      return res.json(result);
+    }
+  );
+});

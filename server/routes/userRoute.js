@@ -7,6 +7,8 @@ const {
   getDepartmentWithPopulate,
   getAllUser,
   get_all_user_and_department,
+  parallelExample,
+  waterFallExample,
 } = require("../controllers/userController");
 const { verifyToken } = require("../middleware/verifyToken");
 
@@ -29,5 +31,9 @@ router
 //  Example for promise.all & resolve, reject
 
 router.route("/get_all_user_and_department").get(get_all_user_and_department);
+
+// Create Routes (Api endpoint) in which show parallel and waterfall functions example
+router.route("/waterfall").get(waterFallExample);
+router.route("/parallel").get(parallelExample);
 
 module.exports = router;

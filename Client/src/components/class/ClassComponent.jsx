@@ -20,7 +20,7 @@ class ClassComponent extends React.Component {
   render() {
     return (
       <div>
-        <h2>Increment and Decrement in Class component Test!</h2>
+        <h2>Increment and Decrement using Class component Test!</h2>
         <h1>Count: {this.state.count}</h1>
         <button onClick={this.handleIncrement}>
           {" "}

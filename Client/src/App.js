@@ -4,6 +4,7 @@ import ClassComponent from "./components/class/ClassComponent";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import UseCallBackPage from "./components/UseCallBackPage/UseCallBackPage";
 import RequiredForm from "./components/RequiredForm";
+import { ContextExampleComp } from "./components/ContextExampleComp";
 
 const TestPage = ({ name }) => (
   <div>
@@ -52,6 +53,8 @@ const App = () => {
       <ClassComponent />
 
       <UseCallBackPage />
+
+      <ContextExampleComp />
     </div>
   );
 };
